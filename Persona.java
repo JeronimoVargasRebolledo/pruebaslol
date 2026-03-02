@@ -1,15 +1,13 @@
+import java.util.Scanner; // importamos scanner para leer por teclado
+
 public class Persona {
-    // atributos originales
     String nombre;
     String apellidos;
     String numeroDocumentoIdentidad;
     int añoNacimiento;
-
-    // nuevos atributos agregados
     String paisDeNacimiento;
-    char genero; // 'H' o 'M'
+    char genero;
 
-    // constructor actualizado para incluir los dos nuevos campos
     public Persona(String nombre, String apellidos, String numeroDocumentoIdentidad,
                    int añoNacimiento, String paisDeNacimiento, char genero) {
         this.nombre = nombre;
@@ -20,19 +18,51 @@ public class Persona {
         this.genero = genero;
     }
 
-    // metodo imprimir actualizado para mostrar toda la información
     public void imprimir() {
-        System.out.println("Nombre = " + nombre);
-        System.out.println("Apellidos = " + apellidos);
-        System.out.println("Número de documento de identidad = " + numeroDocumentoIdentidad);
-        System.out.println("Año de nacimiento = " + añoNacimiento);
-        System.out.println("País de nacimiento = " + paisDeNacimiento);
-        System.out.println("Género = " + genero);
-        System.out.println(); // Salto de línea para mayor legibilidad
+        System.out.println("\n--- DATOS DE LA PERSONA ---");
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Apellidos: " + apellidos);
+        System.out.println("Documento: " + numeroDocumentoIdentidad);
+        System.out.println("Año de nacimiento: " + añoNacimiento);
+        System.out.println("País: " + paisDeNacimiento);
+        System.out.println("Género: " + genero);
     }
 
     public static void main(String[] args) {
-        Persona p1 = new Persona("Juan", "Perez", "12345", 2000, "Colombia", 'H');
+        // objeto scanner para leer por teclado
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=== Registro de Persona ===");
+
+        System.out.print("Ingrese nombre: ");
+        String nom = sc.nextLine();
+
+        System.out.print("Ingrese apellidos: ");
+        String ape = sc.nextLine();
+
+        System.out.print("Ingrese número de documento: ");
+        String doc = sc.nextLine();
+
+        System.out.print("Ingrese año de nacimiento: ");
+        int año = sc.nextInt();
+        
+        // limpiamos el buffer para seguir leyendo
+        sc.nextLine(); 
+
+        System.out.print("Ingrese país de nacimiento: ");
+        String pais = sc.nextLine();
+
+        System.out.print("Ingrese género (H/M): ");
+        // tomamos la primera letra
+        char gen = sc.next().charAt(0);
+
+        // tomamos el objeto con los datos capturados 
+        Persona p1 = new Persona(nom, ape, doc, año, pais, gen);
+        
+        
         p1.imprimir();
+
+        //cerramos el scanner
+        sc.close();
     }
 }
